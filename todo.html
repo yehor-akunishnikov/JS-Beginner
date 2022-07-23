@@ -73,7 +73,7 @@
         }
     </style>
     <script defer>
-        const API_URL = 'https://62dc2d424438813a2612aa65.mockapi.io/api/todos';
+        const API_URL = 'https://my-json-server.typicode.com/yehor-akunishnikov/JS-Beginner/todos';
 
         class Todo {
             constructor({id, name, creationDate, node}) {
@@ -203,21 +203,29 @@
         class TodoApiService {
             constructor(apiUrl) {
                 this._API_URL = apiUrl;
+                this.headers = {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
             }
 
             delete(id) {
-                return fetch(`${this._API_URL}/${id}`, {method: 'DELETE'})
+                return fetch(`${this._API_URL}/${id}`, {method: 'DELETE', headers: this.headers})
                     .catch(err => console.error(err));
             }
 
             create(todo) {
-                return fetch(`${this._API_URL}`, {method: 'POST', body: JSON.stringify(todo)})
+                return fetch(`${this._API_URL}`, {
+                    method: 'POST',
+                    headers: this.headers,
+                    body: JSON.stringify(todo),
+                })
                     .catch(err => console.error(err))
                     .then(res => res.json());
             }
 
             getAll() {
-                return fetch(this._API_URL)
+                return fetch(this._API_URL, {headers: this.headers})
                     .catch(err => console.error(err))
                     .then(res => res.json());
             }
