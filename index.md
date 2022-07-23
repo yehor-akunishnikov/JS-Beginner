@@ -4,9 +4,15 @@
     justify-content: space-around;
     flex-wrap: wrap;
 }
+
+.nav a {
+    white-space: nowrap;
+}
 </style>
 
-> <p class="nav"><a href="#html">HTML</a><a href="#css">CSS</a><a href="#useful">Useful links</a></p>
+<hr>
+<p class="nav"><a href="#html">HTML</a><a href="#css">CSS</a><a href="#useful">Useful links</a></p>
+<hr>
 
 ## Resources to use anytime all over the way
 <span id="useful"></span>
@@ -85,4 +91,6 @@ Link: <a href="https://www.youtube.com/watch?v=D-h8L5hgW-w&t=5451s">Tutorial</a>
 
 Description: guide on creating a simple pretty page using HTML and CSS.
 
-> <p class="nav"><a href="#html">HTML</a><a href="#css">CSS</a><a href="#useful">Useful links</a></p>
+<hr>
+<p class="nav"><a href="#html">HTML</a><a href="#css">CSS</a><a href="#useful">Useful links</a></p>
+<hr>
