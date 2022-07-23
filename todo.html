@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link
+            crossorigin="anonymous"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            rel="stylesheet"
+    />
+    <style>
+        .root {
+            height: 100vh;
+            width: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media screen and (min-width: 768px) {
+            .todo-container {
+                max-width: 60%;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .todo-container {
+                max-width: 35%;
+            }
+        }
+
+        .todo-container ul li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border: 1px solid #0D6EFDFF;
+        }
+
+        .todo-container ul li:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+
+        .todo-container ul li.done {
+            border-color: #ced4da;
+        }
+
+        .todo-container ul li.done .name {
+            text-decoration: line-through;
+            color: #838383;
+        }
+
+        .todo-container .controls {
+            white-space: nowrap;
+        }
+
+        .todo-container .controls > * {
+            vertical-align: middle;
+        }
+
+        .todo-container .name {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .todo-container .form-check-input {
+            height: 1.5rem;
+            width: 1.5rem;
+            margin: 0;
+        }
+    </style>
+    <script defer>
+        const API_URL = 'https://62dc2d424438813a2612aa65.mockapi.io/api/todos';
+
+        class Todo {
+            constructor({id, name, creationDate, node}) {
+                this.id = id;
+                this.name = name;
+                this.creationDate = creationDate;
+                this.node = node;
+            }
+        }
+
+        class TodoInput {
+            constructor({todoManager, todoApiService}, formNode) {
+                this._todoManager = todoManager;
+                this._todoApiService = todoApiService;
+
+                this._setListeners(formNode);
+            }
+
+            _setListeners(formNode) {
+                formNode.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const formData = new FormData(e.target);
+                    const inputValue = formData.get('add-todo-input');
+
+                    if (!inputValue) {
+                        return null;
+                    }
+
+                    const newTodo = {name: inputValue, creationDate: new Date(), status: false};
+
+                    this._todoApiService.create(newTodo).then(todo => {
+                        this._todoManager.create(todo);
+                    });
+                });
+            }
+        }
+
+        class TodoManager {
+            constructor(todoList) {
+                this._todoList = todoList;
+                this.allTodos = {};
+            }
+
+            _createLi() {
+                const listItem = document.createElement('li');
+
+                listItem.className = 'rounded py-2 px-3';
+
+                return listItem;
+            }
+
+            _createLabel(id, name) {
+                const label = document.createElement('label');
+
+                label.className = 'name';
+                label.setAttribute('for', `status-${id}`);
+                label.setAttribute('title', name);
+                label.innerText = name;
+
+                return label;
+            }
+
+            _createControlsContainer() {
+                const controls = document.createElement('div');
+
+                controls.className = 'controls';
+
+                return controls;
+            }
+
+            _createDeleteBtn() {
+                const deleteBtn = document.createElement('button');
+
+                deleteBtn.className = 'btn btn-sm btn-danger me-3';
+                deleteBtn.innerText = 'Delete';
+
+                return deleteBtn;
+            }
+
+            _createStatusCheckbox(id) {
+                const statusCheckbox = document.createElement('input');
+
+                statusCheckbox.className = 'form-check-input';
+                statusCheckbox.setAttribute('id', `status-${id}`);
+                statusCheckbox.setAttribute('name', `status-${id}`);
+                statusCheckbox.setAttribute('type', 'checkbox');
+
+                return statusCheckbox;
+            }
+
+            remove(id) {
+                try {
+                    const { node } = this.allTodos[id];
+
+                    node.remove();
+                    delete this.allTodos[id];
+                } catch (e) {
+                    console.error(`Todo with such id not found: ${e}`);
+                }
+            }
+
+            takeById(id) {
+                return this.allTodos[id];
+            }
+
+            create({id, name, creationDate}) {
+                const li = this._createLi();
+                const label = this._createLabel(id, name);
+                const controlsContainer = this._createControlsContainer();
+                const deleteBtn = this._createDeleteBtn();
+                const statusCheckbox = this._createStatusCheckbox(id);
+
+                controlsContainer.append(deleteBtn, statusCheckbox);
+                li.append(label, controlsContainer);
+                this._todoList.append(li);
+
+                const todo = new Todo({id, name, creationDate, node: li});
+
+                this.allTodos[id] = todo;
+
+                return todo;
+            }
+        }
+
+        class TodoApiService {
+            constructor(apiUrl) {
+                this._API_URL = apiUrl;
+            }
+
+            delete(id) {
+                return fetch(`${this._API_URL}/${id}`, {method: 'DELETE'})
+                    .catch(err => console.error(err));
+            }
+
+            create(todo) {
+                return fetch(`${this._API_URL}`, {method: 'POST', body: JSON.stringify(todo)})
+                    .catch(err => console.error(err))
+                    .then(res => res.json());
+            }
+
+            getAll() {
+                return fetch(this._API_URL)
+                    .catch(err => console.error(err))
+                    .then(res => res.json());
+            }
+        }
+
+        class TodoHandler {
+            constructor({todoManager, todoApiService}) {
+                this._todoManager = todoManager;
+                this._todoApiService = todoApiService;
+            }
+
+            addListeners({id, node}) {
+                const deleteBtn = node.querySelector('.btn-danger');
+
+                deleteBtn.addEventListener('click', () => {
+                    this._delete(deleteBtn, id);
+                });
+            }
+
+            _delete(deleteBtn, id) {
+                this._todoApiService.delete(id)
+                    .then(() => this._todoManager.remove(id));
+            }
+        }
+
+        window.addEventListener('load', () => {
+            const todoContainer = document.getElementById('todo-container');
+            const todoList = todoContainer.querySelector('#todo-list');
+
+            const manager = new TodoManager(todoList);
+            const apiService = new TodoApiService(API_URL);
+            const handler = new TodoHandler(
+                {todoManager: manager, todoApiService: apiService}
+            );
+            const todoInput = new TodoInput(
+                {todoManager: manager, todoApiService: apiService},
+                document.querySelector('#add-todo-form'),
+            );
+
+            apiService.getAll()
+                .then(todos => {
+                    todos.forEach(todo => {
+                        const newTodo = manager.create(todo);
+
+                        handler.addListeners(newTodo);
+                    })
+                });
+        });
+    </script>
+</head>
+<body>
+<div class="root">
+    <div class="todo-container container-fluid" id="todo-container">
+        <ul id="todo-list" class="list-unstyled"></ul>
+        <form id="add-todo-form">
+            <div class="input-group">
+                <input
+                        name="add-todo-input"
+                        type="text"
+                        class="form-control"
+                        placeholder="Title"
+                        aria-label="New todo title"
+                        aria-describedby="add-btn">
+                <button
+                        class="btn btn-outline-primary"
+                        type="submit">
+                    Add
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

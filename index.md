@@ -16,6 +16,7 @@
     <a href="#html">HTML</a>
     <a href="#css">CSS</a>
     <a href="#useful">Useful links</a>
+    <a href="todo.html">Todo</a>
 </p>
 <hr>
 <br>
@@ -105,5 +106,10 @@ The video course, divided into 10 chapters:
 **Description**: guide on creating a simple pretty page using HTML and CSS.
 
 <hr>
-<p class="nav"><a href="#html">HTML</a><a href="#css">CSS</a><a href="#useful">Useful links</a></p>
+<p class="nav">
+    <a href="#html">HTML</a>
+    <a href="#css">CSS</a>
+    <a href="#useful">Useful links</a>
+    <a href="todo.html">Todo</a>
+</p>
 <hr>
