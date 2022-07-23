@@ -12,7 +12,12 @@
 </style>
 
 <hr>
-<p class="nav"><a href="#html">HTML</a><a href="#css">CSS</a><a href="#useful">Useful links</a></p>
+<p class="nav">
+    <a href="#html">HTML</a>
+    <a href="#css">CSS</a>
+    <a href="#useful">Useful links</a>
+    <a href="todo.html">Todo</a>
+</p>
 <hr>
 <br>
 
