@@ -1,37 +1,58 @@
-## Welcome to GitHub Pages
+# HTML Your First Steps
 
-You can use the [editor on GitHub](https://github.com/yehor-akunishnikov/JS-Beginner/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Base
+1. `Learn HTML – Full Tutorial for Beginners (2022)` _(video)_ - just to learn and remind the basics and get some practice.
+2. `W3S` _(text)_ - more deep dive in HTML and related technologies.
+It is not mandatory to learn all the stuff,
+but you just have to feel like: "Oh, I heard that before, and I know how to google it".
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<hr>
 
-### Markdown
+## Resources to use anytime all over the way
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+`MDN` _(text)_ - you can use it just like
+Wikipedia and search here for anything you come across.
 
-```markdown
-Syntax highlighted code block
+`nicepage` or similar _(text)_ - here you could download templates and inspect
+to find out how they are actually done.
 
-# Header 1
-## Header 2
-### Header 3
+<hr>
 
-- Bulleted
-- List
+## [FreeCodeCamp] Learn HTML – Full Tutorial for Beginners (2022)
+Link: https://www.youtube.com/watch?v=kUMe1FH4CHE
 
-1. Numbered
-2. List
+Description:
+The video course, divided into 10 chapters:
+1. (00:00:55) Chapter 1 - Getting Started
+2. (00:20:13) Chapter 2 - Head Element
+3. (00:29:02) Chapter 3 - Text Basics
+4. (00:49:45) Chapter 4 - List Types
+5. (00:59:55) Chapter 5 - Add Links
+6. (01:30:38) Chapter 6 - Add Images
+7. (02:00:58) Chapter 7 - Semantic Tags
+8. (02:24:53) Chapter 8 - Create Tables
+9. (02:40:42) Chapter 9 - Forms & Inputs
+10. (03:25:16) Chapter 10 - HTML Project
 
-**Bold** and _Italic_ and `Code` text
+<hr>
 
-[Link](url) and ![Image](src)
-```
+## W3S Interactive Guide
+Link: https://www.w3schools.com/html/default.asp
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+Description:
+Interactive HTML course with examples, exercises.
 
-### Jekyll Themes
+<hr>
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yehor-akunishnikov/JS-Beginner/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## MDN
+Link: https://developer.mozilla.org/en-US/
 
-### Support or Contact
+Description: a bunch of documentation about HTML, CSS, JS etc...
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+<hr>
+
+## Nicepage
+Link: https://nicepage.com/html-templates
+
+Description: a repo with many ready to use HTML templates.
+
