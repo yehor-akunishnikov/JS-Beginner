@@ -13,6 +13,7 @@
 <hr>
 <p class="nav"><a href="#html">HTML</a><a href="#css">CSS</a><a href="#useful">Useful links</a></p>
 <hr>
+<br>
 
 ## Resources to use anytime all over the way
 <span id="useful"></span>
@@ -23,6 +24,8 @@ Wikipedia and search here for anything you come across.
 to find out how they are actually done.
 
 > `CSS Tricks` _(text)_ - just to read something interesting and find some unusual things.
+
+> `Javascript Info` _(text)_ - here you can find all about JS. 
 
 ### MDN
 Link: <a href="https://developer.mozilla.org/en-US/">Mozilla Developer Network</a>
@@ -38,6 +41,12 @@ Description: a repo with many ready to use HTML templates.
 Link: <a href="https://css-tricks.com/">CSS Tricks</a>
 
 Description: blog about frontend and a little more.
+
+### Javascript Info
+Link: <a href="https://javascript.info/">Javascript Info</a>
+
+Description: platform to learn JavaScript, starting from scratch and
+go on to advanced concepts like OOP.
 
 <hr>
 
