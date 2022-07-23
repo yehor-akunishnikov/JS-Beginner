@@ -1,8 +1,20 @@
-# All needed learning resources
+<style>
+.nav {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+</style>
+
+> <p class="nav">
+>    <a href="#html">HTML</a>
+>    <a href="#css">CSS</a>
+>    <a href="#useful">Useful links</a>
+</p>
 
 ## Resources to use anytime all over the way
-
-> <a href="#mdn">`MDN`</a> _(text)_ - you can use it just like
+<span id="useful"></span>
+> `MDN` _(text)_ - you can use it just like
 Wikipedia and search here for anything you come across.
 
 > `nicepage` or similar _(text)_ - here you could download templates and inspect them
@@ -11,7 +23,6 @@ to find out how they are actually done.
 > `CSS Tricks` _(text)_ - just to read something interesting and find some unusual things.
 
 ### MDN
-<span id="mdn"></span>
 Link: <a href="https://developer.mozilla.org/en-US/">Mozilla Developer Network</a>
 
 Description: a bunch of documentation about HTML, CSS, JS etc...
@@ -29,6 +40,7 @@ Description: blog about frontend and a little more.
 <hr>
 
 ## Base HTML
+<span id="html"></span>
 > `Learn HTML – Full Tutorial for Beginners (2022)` _(video)_ - just to learn and remind the basics and get some practice.
 
 > `W3S` _(text)_ - more deep dive in HTML and related technologies.
@@ -60,7 +72,7 @@ Interactive HTML course with examples, exercises.
 <hr>
 
 ## Base CSS
-
+<span id="css"></span>
 > `Web.dev` _(text)_ - to get basic CSS knowledge.
 
 > `HTML and CSS Tutorial for 2021` _(video)_ - to consolidate knowledge and create something beautiful.
@@ -77,4 +89,8 @@ Link: <a href="https://www.youtube.com/watch?v=D-h8L5hgW-w&t=5451s">Tutorial</a>
 
 Description: guide on creating a simple pretty page using HTML and CSS.
 
-<hr>
+> <p class="nav">
+>    <a href="#html">HTML</a>
+>    <a href="#css">CSS</a>
+>    <a href="#useful">Useful links</a>
+</p>
