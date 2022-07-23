@@ -7,6 +7,7 @@
 
 .nav a {
     white-space: nowrap;
+    text-decoration: none;
 }
 </style>
 
@@ -28,24 +29,24 @@ to find out how they are actually done.
 > `Javascript Info` _(text)_ - here you can find all about JS. 
 
 ### MDN
-Link: <a href="https://developer.mozilla.org/en-US/">Mozilla Developer Network</a>
+**Link**: <a href="https://developer.mozilla.org/en-US/">Mozilla Developer Network</a>
 
-Description: a bunch of documentation about HTML, CSS, JS etc...
+**Description**: a bunch of documentation about HTML, CSS, JS etc...
 
 ### Nicepage
-Link: <a href="https://nicepage.com/html-templates">Nicepage</a>
+**Link**: <a href="https://nicepage.com/html-templates">Nicepage</a>
 
-Description: a repo with many ready to use HTML templates.
+**Description**: a repo with many ready to use HTML templates.
 
 ### CSS tricks
-Link: <a href="https://css-tricks.com/">CSS Tricks</a>
+**Link**: <a href="https://css-tricks.com/">CSS Tricks</a>
 
-Description: blog about frontend and a little more.
+**Description**: blog about frontend and a little more.
 
 ### Javascript Info
-Link: <a href="https://javascript.info/">Javascript Info</a>
+**Link**: <a href="https://javascript.info/">Javascript Info</a>
 
-Description: platform to learn JavaScript, starting from scratch and
+**Description**: platform to learn JavaScript, starting from scratch and
 go on to advanced concepts like OOP.
 
 <hr>
@@ -59,9 +60,9 @@ It is not mandatory to learn all the stuff,
 but you just have to feel like: "Oh, I heard that before, and I know how to google it".
 
 ### [FreeCodeCamp] Learn HTML – Full Tutorial for Beginners (2022)
-Link: <a href="https://www.youtube.com/watch?v=kUMe1FH4CHE">Full Tutorial for Beginners (2022)</a>
+**Link**: <a href="https://www.youtube.com/watch?v=kUMe1FH4CHE">Full Tutorial for Beginners (2022)</a>
 
-Description:
+**Description**:
 The video course, divided into 10 chapters:
 1. (00:00:55) Chapter 1 - Getting Started
 2. (00:20:13) Chapter 2 - Head Element
@@ -75,10 +76,9 @@ The video course, divided into 10 chapters:
 10. (03:25:16) Chapter 10 - HTML Project
 
 ### W3S Interactive Guide
-Link: <a href="https://www.w3schools.com/html/default.asp">W3Schools</a>
+**Link**: <a href="https://www.w3schools.com/html/default.asp">W3Schools</a>
 
-Description:
-Interactive HTML course with examples, exercises.
+**Description**: interactive HTML course with examples, exercises.
 
 <hr>
 
@@ -90,15 +90,15 @@ Interactive HTML course with examples, exercises.
 
 ### Web Dev Learn CSS
 
-Link: <a href="https://web.dev/learn/css/">web.dev</a>
+**Link**: <a href="https://web.dev/learn/css/">web.dev</a>
 
-Description: learning platform containing free guides for different web technologies.
+**Description**: learning platform containing free guides for different web technologies.
 
 ### [DesignCourse] HTML and CSS Tutorial for 2021
 
-Link: <a href="https://www.youtube.com/watch?v=D-h8L5hgW-w&t=5451s">Tutorial</a>
+**Link**: <a href="https://www.youtube.com/watch?v=D-h8L5hgW-w&t=5451s">Tutorial</a>
 
-Description: guide on creating a simple pretty page using HTML and CSS.
+**Description**: guide on creating a simple pretty page using HTML and CSS.
 
 <hr>
 <p class="nav"><a href="#html">HTML</a><a href="#css">CSS</a><a href="#useful">Useful links</a></p>
