@@ -19,6 +19,23 @@
             align-items: center;
         }
 
+        .todo-container ul {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .todo-container ul::-webkit-scrollbar {
+            width: 0.5em;
+        }
+
+        .todo-container ul::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .todo-container ul::-webkit-scrollbar-thumb {
+            background-color: #0D6EFDFF;
+        }
+
         @media screen and (min-width: 768px) {
             .todo-container {
                 max-width: 60%;
@@ -323,7 +340,7 @@
 <body>
 <div class="root">
     <div class="todo-container container-fluid" id="todo-container">
-        <ul id="todo-list" class="list-unstyled"></ul>
+        <ul id="todo-list" class="list-unstyled p-2"></ul>
         <form id="add-todo-form">
             <div class="input-group">
                 <input
