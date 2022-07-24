@@ -4,5 +4,7 @@ plugins:
 relative_links:
   enabled: true
   collections: true
-#include:
-#  - todo.md
+include:
+  - ../pages/html.md
+  - ../pages/css.md
+  - ../pages/other-resources.md
