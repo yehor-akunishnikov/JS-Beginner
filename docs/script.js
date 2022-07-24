@@ -128,6 +128,13 @@ class TodoController {
         this.allTodos = {};
     }
 
+    takeRawData(todo) {
+        const rawTodo = {...todo};
+        delete rawTodo.node;
+
+        return rawTodo;
+    }
+
     startLoading(todoId) {
         const todo = this.takeById(todoId);
         const loader = todo.node.querySelector('.spinner-border');
@@ -144,7 +151,7 @@ class TodoController {
 
     remove(id) {
         try {
-            const { node } = this.allTodos[id];
+            const { node } = this.takeById(id);
 
             node.remove();
             delete this.allTodos[id];
@@ -242,7 +249,8 @@ class TodoHandler {
         });
 
         checkbox.addEventListener('input', (e) => {
-            this._update({...todo, status: e.target.checked});
+            const rawTodo = this._todoController.takeRawData(todo);
+            this._update({...rawTodo, status: e.target.checked});
         });
     }
 
@@ -273,9 +281,7 @@ window.addEventListener('load', () => {
     const creator = new TodoCreator();
     const controller = new TodoController({todoCreator: creator}, todoList);
     const apiService = new TodoApiService(API_URL);
-    const handler = new TodoHandler(
-        {todoController: controller, todoApiService: apiService}
-    );
+    const handler = new TodoHandler({todoController: controller, todoApiService: apiService});
     const todoInput = new TodoInput(
         {todoController: controller, todoApiService: apiService, todoHandler: handler},
         document.querySelector('#add-todo-form'),
