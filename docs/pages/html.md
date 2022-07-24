@@ -10,12 +10,18 @@
     text-decoration: none;
     margin: 6px;
 }
+
+.nav a.active {
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
 </style>
 
 <hr>
 <p class="nav">
-    <a href="html.html">HTML</a>
-    <a class="active" href="css.html">CSS</a>
+    <a href="../index.html">Home</a>
+    <a class="active" href="html.html">HTML</a>
+    <a href="css.html">CSS</a>
     <a href="other-resources.html">Useful links</a>
     <a href="https://roadmap.sh/frontend">Roadmap</a>
     <a href="../todo.html">Todo</a>
@@ -24,7 +30,6 @@
 <br>
 
 ## HTML Resources
-<span id="html"></span>
 > `Learn HTML – Full Tutorial for Beginners (2022)` _(video)_ - just to learn and remind the basics and get some practice.
 
 > `W3S` _(text)_ - more deep dive in HTML and related technologies.

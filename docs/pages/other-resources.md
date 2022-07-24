@@ -10,10 +10,16 @@
     text-decoration: none;
     margin: 6px;
 }
+
+.nav a.active {
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
 </style>
 
 <hr>
 <p class="nav">
+    <a href="../index.html">Home</a>
     <a href="html.html">HTML</a>
     <a href="css.html">CSS</a>
     <a class="active" href="other-resources.html">Useful links</a>
@@ -24,7 +30,6 @@
 <br>
 
 ## Resources to use anytime all over the way
-<span id="useful"></span>
 > `MDN` _(text)_ - you can use it just like
 Wikipedia and search here for anything you come across.
 

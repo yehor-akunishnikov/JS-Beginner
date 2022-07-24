@@ -10,12 +10,18 @@
     text-decoration: none;
     margin: 6px;
 }
+
+.nav a.active {
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
 </style>
 
 <hr>
 <p class="nav">
-    <a class="active" href="html.html">HTML</a>
-    <a href="css.html">CSS</a>
+    <a href="../index.html">Home</a>
+    <a href="html.html">HTML</a>
+    <a class="active" href="css.html">CSS</a>
     <a href="other-resources.html">Useful links</a>
     <a href="https://roadmap.sh/frontend">Roadmap</a>
     <a href="../todo.html">Todo</a>
@@ -24,7 +30,6 @@
 <br>
 
 ## Base CSS
-<span id="css"></span>
 > `Web.dev` _(text)_ - to get basic CSS knowledge.
 
 > `HTML and CSS Tutorial for 2021` _(video)_ - to consolidate knowledge and create something beautiful.
