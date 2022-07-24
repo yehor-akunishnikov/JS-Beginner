@@ -1,15 +1,16 @@
 const API_URL = 'https://62dc2d424438813a2612aa65.mockapi.io/api/todos';
 
 class Todo {
-    constructor({id, name, creationDate, node}) {
+    constructor({id, name, creationDate, node, notes}) {
         this.id = id;
         this.name = name;
         this.creationDate = creationDate;
         this.node = node;
+        this.notes = notes;
     }
 }
 
-class TodoInput {
+class TodoInputController {
     constructor({todoController, todoApiService, todoHandler}, formNode) {
         this._todoController = todoController;
         this._todoApiService = todoApiService;
@@ -33,11 +34,52 @@ class TodoInput {
             const todo = {name: inputValue, creationDate: new Date(), status: false};
 
             this._todoApiService.create(todo).then(response => {
-                const newTodo = this._todoController.create(response);
+                const newTodo = this._todoController.create({...response, notes: ''});
                 this._todoHandler.addListeners(newTodo);
                 formNode.reset();
             });
         });
+    }
+}
+
+class EditFormController {
+    constructor({apiService, todosController}, formNode, modalId) {
+        this._apiService = apiService;
+        this._todosController = todosController;
+        this._modal = new bootstrap.Modal(document.getElementById(modalId));
+        this._formNode = formNode;
+
+        this._todo = null;
+        this._addListeners(formNode);
+    }
+
+    _addListeners(formNode) {
+        formNode.addEventListener('submit', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const formData = new FormData(e.target);
+            const name = formData.get('titleInput');
+            const notes = formData.get('notesInput');
+
+            this._apiService.update({...this._todo, name, notes}).then((res) => {
+                this._todosController.update(res, 'notes');
+                this._modal.hide();
+            });
+        });
+
+        formNode.addEventListener('reset', () => {
+            this.setTodo(null);
+        });
+    }
+
+    setTodo(todo) {
+        this._todo = todo;
+
+        if(todo) {
+            this._formNode.querySelector('#titleInput').value = todo.name;
+            this._formNode.querySelector('#notesInput').value = todo.notes;
+        }
     }
 }
 
@@ -68,7 +110,7 @@ class TodoCreator {
     _createLabel(id, name) {
         const label = document.createElement('label');
 
-        label.className = 'name';
+        label.className = 'name me-1';
         label.setAttribute('for', `status-${id}`);
         label.setAttribute('title', name);
         label.innerText = name;
@@ -105,6 +147,20 @@ class TodoCreator {
         return statusCheckbox;
     }
 
+    _createEditButton() {
+        const editBtn = document.createElement('button');
+        const editIcon = document.createElement('i');
+
+        editBtn.className = 'edit-btn btn btn-sm btn-primary me-3';
+        editBtn.setAttribute('type', 'button');
+        editBtn.setAttribute('data-bs-toggle', 'modal');
+        editBtn.setAttribute('data-bs-target', '#editModal');
+        editIcon.className = 'bi bi-pencil';
+        editBtn.append(editIcon);
+
+        return editBtn;
+    }
+
     createTodo({id, name, creationDate, status}) {
         const li = this._createLi(status);
         const label = this._createLabel(id, name);
@@ -112,8 +168,9 @@ class TodoCreator {
         const deleteBtn = this._createDeleteBtn();
         const statusCheckbox = this._createStatusCheckbox(id, status);
         const loader = this._createLoader();
+        const editBtn = this._createEditButton();
 
-        controlsContainer.append(deleteBtn, statusCheckbox);
+        controlsContainer.append(deleteBtn, editBtn, statusCheckbox);
         li.append(label, controlsContainer, loader);
 
         return li;
@@ -137,16 +194,20 @@ class TodoController {
 
     startLoading(todoId) {
         const todo = this.takeById(todoId);
-        const loader = todo.node.querySelector('.spinner-border');
+        if(todo) {
+            const loader = todo.node.querySelector('.spinner-border');
 
-        loader.classList.remove('hidden');
+            loader.classList.remove('hidden');
+        }
     }
 
     endLoading(todoId) {
         const todo = this.takeById(todoId);
-        const loader = todo.node.querySelector('.spinner-border');
+        if(todo) {
+            const loader = todo.node.querySelector('.spinner-border');
 
-        loader.classList.add('hidden');
+            loader.classList.add('hidden');
+        }
     }
 
     remove(id) {
@@ -160,15 +221,39 @@ class TodoController {
         }
     }
 
-    update(todo) {
+    _updateStatus(oldTodo, newTodo) {
+        if (newTodo.status === oldTodo.status) {
+            return false;
+        }
+
+        oldTodo.status = newTodo.status;
+        if (newTodo.status) {
+            oldTodo.node.classList.add('done');
+        } else {
+            oldTodo.node.classList.remove('done');
+        }
+    }
+
+    _updateNotes(todo, node) {
+        this.takeById(todo.id).notes = todo.notes;
+        this.takeById(todo.id).name = todo.name;
+
+        node.querySelector('.name').innerText = todo.name;
+    }
+
+    update(todo, key) {
         try {
             const oldTodo = this.takeById(todo.id);
 
-            oldTodo.status = todo.status;
-            if (todo.status) {
-                oldTodo.node.classList.add('done');
-            } else {
-                oldTodo.node.classList.remove('done');
+            switch (key) {
+                case 'status':
+                    if (todo.status !== oldTodo.status) {
+                        this._updateStatus(oldTodo, todo);
+                    }
+                break;
+                case 'notes':
+                    this._updateNotes(todo, oldTodo.node);
+                break;
             }
         } catch (e) {
             console.error(`Todo with such id not found: ${e}`);
@@ -235,14 +320,16 @@ class TodoApiService {
 }
 
 class TodoHandler {
-    constructor({todoController, todoApiService}) {
+    constructor({todoController, todoApiService, editFromController}) {
         this._todoController = todoController;
         this._todoApiService = todoApiService;
+        this._editFromController = editFromController;
     }
 
     addListeners(todo) {
         const deleteBtn = todo.node.querySelector('.btn-danger');
         const checkbox = todo.node.querySelector('.form-check-input');
+        const editBtn = todo.node.querySelector('.edit-btn');
 
         deleteBtn.addEventListener('click', () => {
             this._delete(todo.id);
@@ -250,7 +337,11 @@ class TodoHandler {
 
         checkbox.addEventListener('input', (e) => {
             const rawTodo = this._todoController.takeRawData(todo);
-            this._update({...rawTodo, status: e.target.checked});
+            this._updateStatus({...rawTodo, status: e.target.checked});
+        });
+
+        editBtn.addEventListener('click', () => {
+            this._editFromController.setTodo(todo);
         });
     }
 
@@ -263,11 +354,11 @@ class TodoHandler {
             });
     }
 
-    _update(todo) {
+    _updateStatus(todo) {
         this._todoController.startLoading(todo.id);
         this._todoApiService.update(todo)
             .then((res) => {
-                this._todoController.update(res);
+                this._todoController.update(res, 'status');
                 this._todoController.endLoading(res.id);
             });
     }
@@ -275,14 +366,24 @@ class TodoHandler {
 
 window.addEventListener('load', () => {
     const todoContainer = document.getElementById('todo-container');
+
     const todoList = todoContainer.querySelector('#todo-list');
     const loader = todoContainer.querySelector('.main-loading');
+    const editForm = document.querySelector('#editModalForm');
 
     const creator = new TodoCreator();
     const controller = new TodoController({todoCreator: creator}, todoList);
     const apiService = new TodoApiService(API_URL);
-    const handler = new TodoHandler({todoController: controller, todoApiService: apiService});
-    const todoInput = new TodoInput(
+    const editFromController = new EditFormController({
+        apiService,
+        todosController: controller
+    }, editForm, 'editModal');
+    const handler = new TodoHandler({
+        todoController: controller,
+        todoApiService: apiService,
+        editFromController,
+    });
+    const todoInputController = new TodoInputController(
         {todoController: controller, todoApiService: apiService, todoHandler: handler},
         document.querySelector('#add-todo-form'),
     );
