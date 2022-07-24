@@ -1,0 +1,114 @@
+.root {
+    height: 100vh;
+    width: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-container ul {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #0D6EFDFF;
+    border-radius: 10px 0 0 10px;
+}
+
+.todo-container .spinner-border {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+
+    height: 15px;
+    width: 15px;
+
+    display: block;
+}
+
+.todo-container .spinner-border.hidden {
+    display: none;
+}
+
+.todo-container ul::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.todo-container ul::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.todo-container ul::-webkit-scrollbar-thumb {
+    background-color: #0D6EFDFF;
+}
+
+@media screen and (min-width: 768px) {
+    .todo-container {
+        max-width: 60%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .todo-container {
+        max-width: 35%;
+    }
+}
+
+.todo-container ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+
+    border: 1px solid #0D6EFDFF;
+}
+
+.todo-container ul li:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.todo-container ul li.done {
+    border-color: #ced4da;
+}
+
+.todo-container ul li.done .form-check-input {
+    border-color: #008000FF;
+    background-color: #008000FF;
+}
+
+.todo-container ul li.done .name {
+    text-decoration: line-through;
+    color: #838383;
+}
+
+.todo-container .controls {
+    white-space: nowrap;
+}
+
+.todo-container .controls > * {
+    vertical-align: middle;
+}
+
+.todo-container .name {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.todo-container .form-check-input {
+    height: 1.5rem;
+    width: 1.5rem;
+    margin: 0;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.nav-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+.main-loading {
+    border: none !important;
+}
