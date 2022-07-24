@@ -27,3 +27,15 @@
     <a href="todo.html">Todo</a>
 </p>
 <hr>
+<br>
+
+# About
+
+Here you could find links for all needed learning materials to become
+frontend developer. Guides for technologies such as:
+<a href="pages/html.html">HTML</a>,
+<a href="pages/css.html">CSS</a>, and
+<a href="pages/other-resources.html">lots of other things</a>.
+
+Also are available <a href="https://roadmap.sh/frontend">Roadmap</a> and
+<a href="todo.html">Todolist</a>.

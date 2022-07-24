@@ -29,18 +29,18 @@
 <hr>
 <br>
 
-## Base CSS
+# Base CSS
 > `Web.dev` _(text)_ - to get basic CSS knowledge.
 
 > `HTML and CSS Tutorial for 2021` _(video)_ - to consolidate knowledge and create something beautiful.
 
-### Web Dev Learn CSS
+## Web Dev Learn CSS
 
 **Link**: <a href="https://web.dev/learn/css/">web.dev</a>
 
 **Description**: learning platform containing free guides for different web technologies.
 
-### [DesignCourse] HTML and CSS Tutorial for 2021
+## [DesignCourse] HTML and CSS Tutorial for 2021
 
 **Link**: <a href="https://www.youtube.com/watch?v=D-h8L5hgW-w&t=5451s">Tutorial</a>
 

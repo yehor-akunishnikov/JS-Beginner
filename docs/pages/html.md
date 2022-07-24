@@ -29,14 +29,14 @@
 <hr>
 <br>
 
-## HTML Resources
+# HTML Resources
 > `Learn HTML – Full Tutorial for Beginners (2022)` _(video)_ - just to learn and remind the basics and get some practice.
 
 > `W3S` _(text)_ - more deep dive in HTML and related technologies.
 It is not mandatory to learn all the stuff,
 but you just have to feel like: "Oh, I heard that before, and I know how to google it".
 
-### [FreeCodeCamp] Learn HTML – Full Tutorial for Beginners (2022)
+## [FreeCodeCamp] Learn HTML – Full Tutorial for Beginners (2022)
 **Link**: <a href="https://www.youtube.com/watch?v=kUMe1FH4CHE">Full Tutorial for Beginners (2022)</a>
 
 **Description**:
@@ -52,7 +52,7 @@ The video course, divided into 10 chapters:
 9. (02:40:42) Chapter 9 - Forms & Inputs
 10. (03:25:16) Chapter 10 - HTML Project
 
-### W3S Interactive Guide
+## W3S Interactive Guide
 **Link**: <a href="https://www.w3schools.com/html/default.asp">W3Schools</a>
 
 **Description**: interactive HTML course with examples, exercises.
