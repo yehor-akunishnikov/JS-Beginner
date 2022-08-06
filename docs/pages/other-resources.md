@@ -24,7 +24,7 @@
     <a href="css.html">CSS</a>
     <a class="active" href="other-resources.html">Useful links</a>
     <a href="https://roadmap.sh/frontend">Roadmap</a>
-    <a href="../todo.html">Todo</a>
+    <a href="https://yehor-akunishnikov.github.io/TodoList/">Todo</a>
 </p>
 <hr>
 <br>
